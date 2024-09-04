@@ -22,7 +22,7 @@ class EnquiryController extends Controller
         $subject = $request->input('subject');
         $message = $request->input('message');
 
-        Mail::to('laravelsmtp@example.com')->send(new EnquiryMail($name, $email, $subject, $message));
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new EnquiryMail($name, $email, $subject, $message));
 
         return response()->json(['message' => 'Email sent successfully.']);
     }
